@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var speed = 100
-@export var gravity = 400
+@export var speed = 75
+@export var gravity = 600
+@export var jump_force = -200
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -15,6 +16,7 @@ func _physics_process(delta):
 	_handle_input()
 	_handle_movement()
 	_handle_attack()
+	_handle_jump()
 	_update_animation()
 
 func _handle_input():
@@ -25,10 +27,9 @@ func _apply_gravity(delta):
 			velocity.y += gravity * delta
 
 func _handle_movement():
-	if not is_attacking:
-		velocity.x = direction * speed
-		move_and_slide()
-
+	velocity.x = direction * speed
+	move_and_slide()
+	
 func _handle_attack():
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		is_attacking = true
@@ -36,15 +37,26 @@ func _handle_attack():
 		await get_tree().create_timer(0.3).timeout
 		is_attacking = false
 
+func _handle_jump():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_force
+
 func _update_animation():
 	if is_attacking:
 		return
-	
-	if direction != 0:
-		animated_sprite_2d.flip_h = direction < 0
-		_play_animation("run")
+		
+	if is_on_floor():
+		if direction != 0:
+			animated_sprite_2d.flip_h = direction < 0
+			_play_animation("run")
+		else:
+			_play_animation("idle")
 	else:
-		_play_animation("idle")
+		animated_sprite_2d.flip_h = direction < 0
+		if velocity.y <= 0:
+			_play_animation("jump")
+		else:
+			_play_animation("fall")
 
 func _play_animation(animation_name):
 	if animated_sprite_2d.animation != animation_name:
