@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xl4iaso4uvn"
-path="res://.godot/imported/Run (78x58).png-b4ed3bd37c0a9487c078767b7c455dae.ctex"
+uid="uid://brs4qmfqtn8am"
+path="res://.godot/imported/Terrain (32x32).png-aa7ef910dc37abea394eb1d334a8cb7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/player/Run (78x58).png"
-dest_files=["res://.godot/imported/Run (78x58).png-b4ed3bd37c0a9487c078767b7c455dae.ctex"]
+source_file="res://assets/environment/tileset/Terrain (32x32).png"
+dest_files=["res://.godot/imported/Terrain (32x32).png-aa7ef910dc37abea394eb1d334a8cb7c.ctex"]
 
 [params]
 
