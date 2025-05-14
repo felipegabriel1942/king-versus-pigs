@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://scvibv6nfq4a"]
+[gd_scene load_steps=33 format=3 uid="uid://scvibv6nfq4a"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/player.gd" id="1_d4ys8"]
 [ext_resource type="Texture2D" uid="uid://cnt66p6qbnux" path="res://assets/characters/player/Attack.png" id="2_vfhle"]
@@ -205,14 +205,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7s5u"]
 size = Vector2(16, 26)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njg3i"]
+size = Vector2(32, 13)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_d4ys8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-68, 51)
 sprite_frames = SubResource("SpriteFrames_8tg5n")
-animation = &"fall"
+animation = &"attack"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 offset = Vector2(68, -51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -220,6 +225,16 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_r7s5u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(38, 4)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-10, 2.5)
+shape = SubResource("RectangleShape2D_njg3i")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

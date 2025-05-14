@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0wafjo47npor"]
+[gd_scene load_steps=6 format=3 uid="uid://0wafjo47npor"]
 
 [ext_resource type="PackedScene" uid="uid://scvibv6nfq4a" path="res://scenes/characters/player/player.tscn" id="1_mp4ya"]
 [ext_resource type="Texture2D" uid="uid://brs4qmfqtn8am" path="res://assets/environment/tileset/Terrain (32x32).png" id="2_fs1q2"]
+[ext_resource type="PackedScene" uid="uid://beaqj2xyxp44k" path="res://scenes/characters/enemies/pig/pig.tscn" id="3_dramt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bnk7d"]
 texture = ExtResource("2_fs1q2")
@@ -306,7 +307,7 @@ sources/1 = SubResource("TileSetAtlasSource_bnk7d")
 
 [node name="Player" parent="." instance=ExtResource("1_mp4ya")]
 z_index = 1
-position = Vector2(-73, 18)
+position = Vector2(-73, 16)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rc6v1")
@@ -315,3 +316,14 @@ layer_0/name = "Ground"
 layer_0/tile_data = PackedInt32Array(-65540, 196609, 2, -4, 196609, 2, 65532, 196609, 2, 131069, 131073, 1, 131070, 131073, 1, 131071, 131073, 1, 65536, 131073, 1, 65537, 131073, 1, 65538, 131073, 1, 65539, 131073, 1, 65540, 131073, 1, 131068, 458753, 2, 5, 65537, 2, -65531, 65537, 2, -131067, 65537, 2, 65541, 524289, 2, -131076, 458753, 1, -196603, 524289, 1, -131075, 131073, 3, -131074, 131073, 3, -131073, 131073, 3, -196608, 131073, 3, -196607, 131073, 3, -196606, 131073, 3, -196605, 131073, 3, -196604, 131073, 3)
 layer_1/name = "Background"
 layer_1/tile_data = PackedInt32Array(-65539, 65537, 7, -65538, 131073, 7, -65537, 131073, 7, -131072, 131073, 7, -131071, 131073, 7, -131070, 131073, 7, -131069, 131073, 7, -131068, 196609, 7, -65532, 196609, 8, 4, 196609, 9, 3, 131073, 9, 2, 131073, 9, 1, 131073, 9, 0, 131073, 9, 65535, 131073, 9, 65534, 131073, 9, 65533, 65537, 9, -3, 65537, 8, -2, 131073, 8, -1, 131073, 8, -65536, 131073, 8, -65535, 131073, 8, -65534, 131073, 8, -65533, 131073, 8)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Pig3" parent="Enemies" instance=ExtResource("3_dramt")]
+position = Vector2(143, 24)
+
+[node name="Pig1" parent="Enemies" instance=ExtResource("3_dramt")]
+position = Vector2(85, 25)
+
+[node name="Pig2" parent="Enemies" instance=ExtResource("3_dramt")]
+position = Vector2(20, 25)
