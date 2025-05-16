@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://das8sroig8dyl"
-path="res://.godot/imported/Idle.png-0e250b827267e383fb3aaea37a02ae47.ctex"
+uid="uid://cdovaavn6jg3k"
+path="res://.godot/imported/Hit.png-e6015aec681e92e5786a4586bf859057.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/enemies/pig/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-0e250b827267e383fb3aaea37a02ae47.ctex"]
+source_file="res://characters/enemies/pig/sprites/Hit.png"
+dest_files=["res://.godot/imported/Hit.png-e6015aec681e92e5786a4586bf859057.ctex"]
 
 [params]
 

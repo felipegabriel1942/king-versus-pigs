@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://0wafjo47npor"]
 
-[ext_resource type="PackedScene" uid="uid://scvibv6nfq4a" path="res://scenes/characters/player/player.tscn" id="1_mp4ya"]
-[ext_resource type="Texture2D" uid="uid://brs4qmfqtn8am" path="res://assets/environment/tileset/Terrain (32x32).png" id="2_fs1q2"]
-[ext_resource type="PackedScene" uid="uid://beaqj2xyxp44k" path="res://scenes/characters/enemies/pig/pig.tscn" id="3_dramt"]
+[ext_resource type="PackedScene" uid="uid://scvibv6nfq4a" path="res://characters/player/player.tscn" id="1_mp4ya"]
+[ext_resource type="Texture2D" uid="uid://brs4qmfqtn8am" path="res://assets/sprites/Terrain (32x32).png" id="2_fs1q2"]
+[ext_resource type="PackedScene" uid="uid://beaqj2xyxp44k" path="res://characters/enemies/pig/pig.tscn" id="3_dramt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bnk7d"]
 texture = ExtResource("2_fs1q2")
