@@ -300,14 +300,14 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_rc6v1"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
 sources/1 = SubResource("TileSetAtlasSource_bnk7d")
 
 [node name="Level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_mp4ya")]
 z_index = 1
-position = Vector2(-73, 16)
+position = Vector2(0, 16)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rc6v1")
@@ -319,11 +319,5 @@ layer_1/tile_data = PackedInt32Array(-65539, 65537, 7, -65538, 131073, 7, -65537
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Pig3" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(143, 24)
-
-[node name="Pig1" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(85, 25)
-
-[node name="Pig2" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(20, 25)
+[node name="Pig" parent="Enemies" instance=ExtResource("3_dramt")]
+position = Vector2(103, 24)

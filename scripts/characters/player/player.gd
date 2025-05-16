@@ -11,6 +11,10 @@ class_name Player
 
 var is_attacking = false
 var direction = 0
+var hitbox_offset := Vector2.ZERO
+
+func _ready():
+	hitbox_offset = hitbox.position
 
 func _physics_process(delta):
 	_apply_gravity(delta)
@@ -52,11 +56,18 @@ func _update_animation():
 	if is_on_floor():
 		if direction != 0:
 			animated_sprite_2d.flip_h = direction < 0
+			
+			if animated_sprite_2d.flip_h:
+				hitbox.position.x = -abs(hitbox.position.x)
+			else:
+				hitbox.position.x = abs(hitbox.position.x)
+			
 			_play_animation("run")
 		else:
 			_play_animation("idle")
 	else:
 		animated_sprite_2d.flip_h = direction < 0
+		
 		if velocity.y <= 0:
 			_play_animation("jump")
 		else:
@@ -68,4 +79,4 @@ func _play_animation(animation_name):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemies"):
-		body.take_damage(1)
+		body.take_damage(1, global_position)

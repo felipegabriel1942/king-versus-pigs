@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://beaqj2xyxp44k"]
+[gd_scene load_steps=32 format=3 uid="uid://beaqj2xyxp44k"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemies/enemy.gd" id="1_n3qry"]
 [ext_resource type="Texture2D" uid="uid://das8sroig8dyl" path="res://assets/characters/enemies/pig/Idle.png" id="1_w8uko"]
@@ -118,7 +118,7 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_ooht5")
 }, {
 "duration": 1.0,
@@ -196,9 +196,6 @@ size = Vector2(18, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cuy2"]
 size = Vector2(137, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yungh"]
-size = Vector2(26, 21)
-
 [node name="Pig" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 5
@@ -206,13 +203,28 @@ script = ExtResource("1_n3qry")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7xm3j")
-animation = &"hit"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.108305
+frame = 4
+frame_progress = 0.836139
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vpb77")
+
+[node name="PersuitRangeLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-68, 0)
+
+[node name="PersuitRangeRight" type="RayCast2D" parent="."]
+scale = Vector2(-1, -1)
+target_position = Vector2(-69, 0)
+
+[node name="AttackRangeLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)
+
+[node name="AttackRangeRight" type="RayCast2D" parent="."]
+scale = Vector2(-1, -1)
+target_position = Vector2(-20, 0)
 
 [node name="PersuitArea" type="Area2D" parent="."]
 
@@ -220,13 +232,4 @@ shape = SubResource("RectangleShape2D_vpb77")
 position = Vector2(0.5, -18)
 shape = SubResource("RectangleShape2D_0cuy2")
 
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, -3.5)
-shape = SubResource("RectangleShape2D_yungh")
-
 [connection signal="body_entered" from="PersuitArea" to="." method="_on_persuit_area_body_entered"]
-[connection signal="body_exited" from="PersuitArea" to="." method="_on_persuit_area_body_exited"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
