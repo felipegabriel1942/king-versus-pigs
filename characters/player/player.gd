@@ -3,7 +3,6 @@ extends CharacterBody2D
 class_name Player
 
 @export var speed = 75
-@export var gravity = 600
 @export var jump_force = -200
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -17,7 +16,6 @@ func _ready():
 	hitbox_offset = hitbox.position
 
 func _physics_process(delta):
-	_apply_gravity(delta)
 	_handle_input()
 	_handle_movement()
 	_handle_attack()
@@ -26,10 +24,6 @@ func _physics_process(delta):
 
 func _handle_input():
 	direction = Input.get_axis("move_left", "move_right")
-
-func _apply_gravity(delta):
-		if not is_on_floor():
-			velocity.y += gravity * delta
 
 func _handle_movement():
 	velocity.x = direction * speed
@@ -79,4 +73,4 @@ func _play_animation(animation_name):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemies"):
-		body.take_damage(1, global_position)
+		body.health_component.take_damage(1, global_position)

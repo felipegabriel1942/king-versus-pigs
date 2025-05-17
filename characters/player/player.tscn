@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://scvibv6nfq4a"]
+[gd_scene load_steps=34 format=3 uid="uid://scvibv6nfq4a"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d4ys8"]
 [ext_resource type="Texture2D" uid="uid://cnt66p6qbnux" path="res://characters/player/sprites/Attack.png" id="2_vfhle"]
 [ext_resource type="Texture2D" uid="uid://dlvln1h15tybg" path="res://characters/player/sprites/Idle.png" id="3_lrllv"]
 [ext_resource type="Texture2D" uid="uid://cckmyfrbn5uoi" path="res://characters/player/sprites/Run.png" id="4_45hun"]
 [ext_resource type="Texture2D" uid="uid://b3538s5idxh7r" path="res://characters/player/sprites/Jump.png" id="4_ssrqa"]
+[ext_resource type="Script" path="res://components/gravity/gravity_component.gd" id="7_fhj5y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chtbj"]
 atlas = ExtResource("2_vfhle")
@@ -209,7 +210,7 @@ size = Vector2(16, 26)
 size = Vector2(32.75, 21.5)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("1_d4ys8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -235,6 +236,9 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_njg3i")
+
+[node name="GravityComponent" type="Node2D" parent="."]
+script = ExtResource("7_fhj5y")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

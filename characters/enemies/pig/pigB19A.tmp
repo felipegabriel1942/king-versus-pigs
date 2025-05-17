@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://beaqj2xyxp44k"]
+[gd_scene load_steps=37 format=3 uid="uid://beaqj2xyxp44k"]
 
 [ext_resource type="Script" path="res://characters/enemies/enemy.gd" id="1_n3qry"]
 [ext_resource type="Texture2D" uid="uid://das8sroig8dyl" path="res://characters/enemies/pig/sprites/Idle.png" id="1_w8uko"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="7_wwx5v"]
 [ext_resource type="PackedScene" uid="uid://d0d1fbgjfbmb0" path="res://components/knockback/knockback_component.tscn" id="8_j6k7s"]
 [ext_resource type="Script" path="res://components/knockback/knockback_component.gd" id="9_qjsgb"]
-[ext_resource type="Script" path="res://components/gravity/gravity_component.gd" id="10_xqhdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hh5eq"]
 atlas = ExtResource("2_2d2wo")
@@ -235,14 +234,10 @@ shape = SubResource("RectangleShape2D_yungh")
 script = ExtResource("7_wwx5v")
 max_health = 4
 time_to_queue_free = 1.5
-invincibility_time = 0.4
 
 [node name="KnockbackComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_j6k7s")]
 script = ExtResource("9_qjsgb")
 healthComponent = NodePath("../HealthComponent")
-
-[node name="GravityComponent" type="Node2D" parent="."]
-script = ExtResource("10_xqhdd")
 
 [connection signal="body_entered" from="PersuitArea" to="." method="_on_persuit_area_body_entered"]
 [connection signal="body_exited" from="PersuitArea" to="." method="_on_persuit_area_body_exited"]

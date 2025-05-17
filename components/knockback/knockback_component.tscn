@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d0d1fbgjfbmb0"]
+
+[node name="KnockbackComponent" type="Node2D"]
