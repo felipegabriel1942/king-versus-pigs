@@ -29,5 +29,7 @@ func take_damage(damage, from_position: Vector2):
 
 func _die():
 	is_dead = true
-	await get_tree().create_timer(time_to_queue_free).timeout
-	get_parent().queue_free()
+	
+	if time_to_queue_free > 0:
+		await get_tree().create_timer(time_to_queue_free).timeout
+		get_parent().queue_free()

@@ -11,17 +11,11 @@ var knockback_velocity = Vector2.ZERO
 func _process(delta):
 	if healthComponent.is_hit:
 		_apply_knockback()
-		_handle_knockback(delta)
 
 func _apply_knockback():
-	var direction = (global_position - healthComponent.damager_position).normalized()
-	knockback_velocity = direction * knockback_strength
-	is_knocked_back = true
-
-func _handle_knockback(delta):
-	if is_knocked_back:
-		get_parent().velocity = knockback_velocity
-		await get_tree().create_timer(knockback_duration).timeout
-		is_knocked_back = false	
-		get_parent().velocity = Vector2.ZERO
-
+	var direction = sign(global_position.x - healthComponent.damager_position.x)
+	knockback_velocity = Vector2(direction * knockback_strength, 0)
+	get_parent().velocity.x = direction * knockback_strength
+	print(get_parent().velocity.x)
+	await get_tree().create_timer(knockback_duration).timeout
+	get_parent().velocity.x = 0

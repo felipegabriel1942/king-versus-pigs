@@ -2,21 +2,29 @@ extends CharacterBody2D
 
 @export var speed = 40
 
-var player = null
+var player: Player = null
 var in_attack_area = false
 var in_persuit_area = false
+var is_attacking = false
+var time_between_attacks = 3
+var attack_cooldown = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var health_component = $HealthComponent
+@onready var attack_timer = $AttackTimer
+
+func _ready():
+	attack_timer.connect("timeout", _handle_attack)
 
 func _physics_process(delta):
+	_handle_death()
 	_handle_movement(delta)		
-	_update_animation()
+	_handle_animation()
 	move_and_slide()
 
 func _handle_movement(delta):
-	if player != null and not health_component.is_dead and not health_component.is_hit:
+	if _can_move():
 		var direction = player.global_position - global_position
 		
 		if direction.x <= 0:
@@ -28,16 +36,38 @@ func _handle_movement(delta):
 				position.x += speed * delta
 			animated_sprite_2d.flip_h = true
 
-func _update_animation():	
+func _can_move():
+	return player != null and not health_component.is_dead and not health_component.is_hit;
+
+func _handle_attack():
+	if _can_attack():
+		is_attacking = true
+		attack_cooldown = true
+		
+		if player != null:
+			player.health_component.take_damage(1, global_position)
+			
+		await get_tree().create_timer(time_between_attacks).timeout
+		attack_cooldown = false
+
+func _can_attack():
+	return in_attack_area and !is_attacking and !attack_cooldown and !health_component.is_dead and !player.health_component.is_dead;
+
+func _handle_animation():	
 	if health_component.is_dead:
 		_play_animation("dead")
 		return
+		
 	if health_component.is_hit:
 		_play_animation("hit")
 		return
 		
-	if in_persuit_area:
+	if in_persuit_area and not is_attacking:
 		_play_animation("run")
+		return
+		
+	if is_attacking:
+		_play_animation("attack")
 		return
 		
 	_play_animation("idle")
@@ -46,18 +76,29 @@ func _play_animation(animation_name):
 	if animated_sprite_2d.animation != animation_name:
 		animated_sprite_2d.play(animation_name)
 
-func _on_persuit_area_body_entered(body):
+func _on_persuit_area_body_entered(body: CharacterBody2D):
 	player = body
 	in_persuit_area = true
 
-func _on_persuit_area_body_exited(body):
+func _on_persuit_area_body_exited(body: CharacterBody2D):
 	in_persuit_area = false
 	player = null
 
-func _on_attack_area_body_entered(body):
+func _on_attack_area_body_entered(body: CharacterBody2D):
 	in_attack_area = true
 	in_persuit_area = false
+	attack_timer.start()
 
-func _on_attack_area_body_exited(body):
+func _on_attack_area_body_exited(body: CharacterBody2D):
 	in_attack_area = false
 	in_persuit_area = true
+	attack_timer.stop()
+
+func _on_animated_sprite_2d_animation_finished():
+	if animated_sprite_2d.animation == "attack":
+		is_attacking = false
+
+func _handle_death():
+	if health_component.is_dead:
+		set_collision_mask_value(1, false)
+		set_collision_layer_value(2, false)

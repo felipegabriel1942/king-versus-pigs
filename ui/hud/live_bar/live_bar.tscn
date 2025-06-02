@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://oo44i8qmwhj1"]
+
+[ext_resource type="Texture2D" uid="uid://cduhaymrxip55" path="res://ui/hud/live_bar/sprites/Live Bar.png" id="1_ew2ge"]
+[ext_resource type="Script" path="res://ui/hud/live_bar/live_bar.gd" id="1_m8nrn"]
+[ext_resource type="PackedScene" uid="uid://mxv0h8i4vayp" path="res://ui/hud/heart/heart.tscn" id="2_vgcjg"]
+
+[node name="LiveBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m8nrn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 24.0
+offset_right = 235.0
+offset_bottom = 133.0
+texture = ExtResource("1_ew2ge")
+
+[node name="Hearts" type="Node2D" parent="."]
+
+[node name="Heart" parent="Hearts" instance=ExtResource("2_vgcjg")]
+position = Vector2(80, 71)
+
+[node name="Heart2" parent="Hearts" instance=ExtResource("2_vgcjg")]
+position = Vector2(116, 71)
+
+[node name="Heart3" parent="Hearts" instance=ExtResource("2_vgcjg")]
+position = Vector2(151, 71)
