@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://oo44i8qmwhj1" path="res://ui/hud/live_bar/live_bar.tscn" id="1_k1x3m"]
 [ext_resource type="PackedScene" uid="uid://scvibv6nfq4a" path="res://characters/player/player.tscn" id="1_mp4ya"]
 [ext_resource type="Texture2D" uid="uid://brs4qmfqtn8am" path="res://assets/sprites/Terrain (32x32).png" id="2_fs1q2"]
-[ext_resource type="PackedScene" uid="uid://beaqj2xyxp44k" path="res://characters/enemies/pig/pig.tscn" id="3_dramt"]
 [ext_resource type="Texture2D" uid="uid://ca3noxo7ohfg" path="res://assets/sprites/Decorations (32x32).png" id="3_tswjs"]
+[ext_resource type="PackedScene" uid="uid://drx3bf65gg46" path="res://characters/enemies/cannon/cannon.tscn" id="5_3uape"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n0vno"]
 texture = ExtResource("3_tswjs")
@@ -375,6 +375,7 @@ sources/0 = SubResource("TileSetAtlasSource_n0vno")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
+visible = false
 
 [node name="LiveBar" parent="CanvasLayer" instance=ExtResource("1_k1x3m")]
 
@@ -393,12 +394,7 @@ layer_2/name = "Decoration"
 layer_2/tile_data = PackedInt32Array(-1, 131072, 3, -65536, 196608, 3, 65535, 131072, 4, 0, 196608, 4, -65534, 262144, 3, 2, 262144, 4, -65533, 327680, 3, 3, 327680, 4)
 
 [node name="Enemies" type="Node2D" parent="."]
+position = Vector2(2, -9)
 
-[node name="Pig" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(85, 25)
-
-[node name="Pig2" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(41, 25)
-
-[node name="Pig3" parent="Enemies" instance=ExtResource("3_dramt")]
-position = Vector2(203, -9)
+[node name="Cannon" parent="Enemies" instance=ExtResource("5_3uape")]
+position = Vector2(99, 31)
