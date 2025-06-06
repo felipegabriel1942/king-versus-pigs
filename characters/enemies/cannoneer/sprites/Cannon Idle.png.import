@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x352m8e5ew5e"
-path="res://.godot/imported/Cannon Idle.png-46502abbf7b51b665595bbb039ffdaa9.ctex"
+path="res://.godot/imported/Cannon Idle.png-cbdae79c9967763487488db70322759f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/cannon/sprites/Cannon Idle.png"
-dest_files=["res://.godot/imported/Cannon Idle.png-46502abbf7b51b665595bbb039ffdaa9.ctex"]
+source_file="res://characters/enemies/cannoneer/sprites/Cannon Idle.png"
+dest_files=["res://.godot/imported/Cannon Idle.png-cbdae79c9967763487488db70322759f.ctex"]
 
 [params]
 

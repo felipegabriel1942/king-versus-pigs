@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 40
+@export var has_knockback = true
 
 var player: Player = null
 var in_attack_area = false
@@ -8,18 +9,28 @@ var in_persuit_area = false
 var is_attacking = false
 var time_between_attacks = 3
 var attack_cooldown = false
+var is_lighting_match = false
+var is_match_on = false
+var is_lighting_cannon = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var health_component = $HealthComponent
 @onready var attack_timer = $AttackTimer
 
+var knockback_component = preload("res://components/knockback/knockback_component.tscn") 
+
 func _ready():
 	attack_timer.connect("timeout", _handle_attack)
+	
+	if has_knockback:
+		var knockback_component_instance = knockback_component.instantiate()
+		knockback_component_instance.healthComponent = health_component
+		self.add_child(knockback_component_instance)
 
 func _physics_process(delta):
 	_handle_death()
-	_handle_movement(delta)		
+	_handle_movement(delta)
 	_handle_animation()
 	move_and_slide()
 
@@ -62,7 +73,7 @@ func _handle_animation():
 		_play_animation("hit")
 		return
 		
-	if in_persuit_area and not is_attacking:
+	if in_persuit_area and not is_attacking and speed > 0:
 		_play_animation("run")
 		return
 		
@@ -70,6 +81,18 @@ func _handle_animation():
 		_play_animation("attack")
 		return
 		
+	if is_lighting_match:
+		_play_animation("lighting_match")
+		return
+		
+	if is_match_on:
+		_play_animation("match_on")
+		return
+	
+	if is_lighting_cannon:
+		_play_animation("lighting_cannon")
+		return
+			
 	_play_animation("idle")
 
 func _play_animation(animation_name):
@@ -77,8 +100,9 @@ func _play_animation(animation_name):
 		animated_sprite_2d.play(animation_name)
 
 func _on_persuit_area_body_entered(body: CharacterBody2D):
-	player = body
-	in_persuit_area = true
+	if body is Player:
+		player = body
+		in_persuit_area = true
 
 func _on_persuit_area_body_exited(body: CharacterBody2D):
 	in_persuit_area = false

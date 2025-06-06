@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0vj6mujxbx6p"
-path="res://.godot/imported/Shoot (44x28).png-49afd0882ff21eb7f87a71968e2a62eb.ctex"
+uid="uid://k5mll50qlkpi"
+path="res://.godot/imported/Cannon Ball.png-5882704bfad79a9b780012f8631f3905.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/cannon/sprites/Shoot (44x28).png"
-dest_files=["res://.godot/imported/Shoot (44x28).png-49afd0882ff21eb7f87a71968e2a62eb.ctex"]
+source_file="res://characters/enemies/cannoneer/sprites/Cannon Ball.png"
+dest_files=["res://.godot/imported/Cannon Ball.png-5882704bfad79a9b780012f8631f3905.ctex"]
 
 [params]
 

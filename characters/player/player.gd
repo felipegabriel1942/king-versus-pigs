@@ -42,7 +42,7 @@ func _can_attack():
 	return Input.is_action_just_pressed("attack") and not is_attacking and !health_component.is_dead
 
 func _handle_jump():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !health_component.is_dead:
 		velocity.y = jump_force
 
 func _handle_animation():

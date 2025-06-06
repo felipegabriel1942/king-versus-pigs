@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://dwahwfs8k54sa"]
+
+[ext_resource type="Script" path="res://characters/enemies/cannoneer/cannon_ball.gd" id="1_01ap5"]
+[ext_resource type="Texture2D" uid="uid://k5mll50qlkpi" path="res://characters/enemies/cannoneer/sprites/Cannon Ball.png" id="1_n0brm"]
+[ext_resource type="Texture2D" uid="uid://bsvvw3butmfvj" path="res://characters/enemies/cannoneer/sprites/Booom.png" id="2_180j1"]
+[ext_resource type="PackedScene" uid="uid://00r6swckdnw4" path="res://components/gravity/gravity_component.tscn" id="3_kxsu0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhh8d"]
+atlas = ExtResource("2_180j1")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdxuv"]
+atlas = ExtResource("2_180j1")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpp07"]
+atlas = ExtResource("2_180j1")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j20q"]
+atlas = ExtResource("2_180j1")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv738"]
+atlas = ExtResource("2_180j1")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeq7p"]
+atlas = ExtResource("2_180j1")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1grno"]
+atlas = ExtResource("1_n0brm")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywls3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhh8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdxuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpp07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j20q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv738")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeq7p")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1grno")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2oj1"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btpcj"]
+radius = 7.0
+
+[node name="CannonBall" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_01ap5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 5)
+sprite_frames = SubResource("SpriteFrames_ywls3")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 5)
+shape = SubResource("CircleShape2D_d2oj1")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(7, 5)
+shape = SubResource("CircleShape2D_btpcj")
+
+[node name="GravityComponent" parent="." instance=ExtResource("3_kxsu0")]
+gravity = 5
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

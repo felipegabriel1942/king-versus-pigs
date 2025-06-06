@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1a4ehw5m4k56"
-path="res://.godot/imported/Cannon Ball.png-d627b2982b47f1b4548e24768421a5f3.ctex"
+uid="uid://dwjbbw1ppam0a"
+path="res://.godot/imported/Lighting Match.png-3719fae85c60bd265fc73de398b1990a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/cannon/sprites/Cannon Ball.png"
-dest_files=["res://.godot/imported/Cannon Ball.png-d627b2982b47f1b4548e24768421a5f3.ctex"]
+source_file="res://characters/enemies/pig/sprites/Lighting Match.png"
+dest_files=["res://.godot/imported/Lighting Match.png-3719fae85c60bd265fc73de398b1990a.ctex"]
 
 [params]
 

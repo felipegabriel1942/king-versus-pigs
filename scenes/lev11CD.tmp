@@ -373,10 +373,10 @@ sources/1 = SubResource("TileSetAtlasSource_bnk7d")
 sources/0 = SubResource("TileSetAtlasSource_n0vno")
 
 [node name="Level01" type="Node2D"]
-position = Vector2(-6, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
+visible = false
 
 [node name="LiveBar" parent="CanvasLayer" instance=ExtResource("1_k1x3m")]
 
@@ -401,4 +401,4 @@ position = Vector2(2, -9)
 position = Vector2(224, 2)
 
 [node name="Cannoneer" parent="Enemies" instance=ExtResource("6_ba8n5")]
-position = Vector2(72, 31)
+position = Vector2(92, 31)
